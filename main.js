@@ -1,6 +1,6 @@
 const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
-const save = localStorage.getItem('save');
+const save = localStorage.getItem('save1');
 const saveObject = JSON.parse(save);
 const hashMap = saveObject || [
     {loge : "B", url : 'https://www.bilibili.com/'},
@@ -95,7 +95,7 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-    localStorage.setItem('save',string);
+    localStorage.setItem('save1',string);
 }
 
 // $(document).on('keypress',(e)=>{
