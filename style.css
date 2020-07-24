@@ -88,6 +88,11 @@ cursor: pointer;
 .myMain > .siteList >li > .site{
     font-size: 24px;
 }
+.myMain > .siteList >li p{
+    width: 120px;
+    text-align: center;
+    overflow: hidden;
+}
 
 .add{
     padding-top: 3px;
