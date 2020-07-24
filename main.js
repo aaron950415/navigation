@@ -3,11 +3,16 @@ const lastLi = siteList.find('li.last');
 const save = localStorage.getItem('save');
 const saveObject = JSON.parse(save);
 const hashMap = saveObject || [
-    {loge : "B", url : 'https://www.bilibili.com/'}
+    {loge : "B", url : 'https://www.bilibili.com/'},
+    {loge : "B", url : 'https://www.baidu.com/'},
+    {loge : "A", url : 'https://www.acfun.cn/'},
+    {loge : "E", url : 'https://www.edmodo.com/'},
+    {loge : "F", url : 'https://www.facebook.com/'},
+    {loge : "G", url : 'https://www.google.com/'},
+    
 ]
 let simplifyUrl = (url)=>{
-     let url2 = url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
-     return url2.length < 17 ?  url2 : url2.replace(/\..*/,'')
+     return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
 }
 
 const render=()=>{
