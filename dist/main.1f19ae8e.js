@@ -125,11 +125,25 @@ var saveObject = JSON.parse(save);
 var hashMap = saveObject || [{
   loge: "B",
   url: 'https://www.bilibili.com/'
+}, {
+  loge: "B",
+  url: 'https://www.baidu.com/'
+}, {
+  loge: "A",
+  url: 'https://www.acfun.cn/'
+}, {
+  loge: "E",
+  url: 'https://www.edmodo.com/'
+}, {
+  loge: "F",
+  url: 'https://www.facebook.com/'
+}, {
+  loge: "G",
+  url: 'https://www.google.com/'
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  var url2 = url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
-  return url2.length < 17 ? url2 : url2.replace(/\..*/, '');
+  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
 };
 
 var render = function render() {
@@ -247,7 +261,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55963" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56522" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

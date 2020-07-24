@@ -83,7 +83,6 @@ body{
 position: relative;
 bottom: 3px;
 right:  3px;
-background-color:#2FA9ED;
 transition: all 0.5 s;
 cursor: pointer;
 }
@@ -94,6 +93,14 @@ cursor: pointer;
     font-size: 24px;
 }
 .myMain > .siteList >li p{
+
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
     width: 130px;
     text-align: center;
     overflow: hidden;
@@ -125,6 +132,14 @@ cursor: pointer;
     .myMain .siteList li{
         margin-right: 25px;
     }
+    .myMain > .siteList >li:hover{
+        position: relative;
+        bottom: 3px;
+        right:  3px;
+        background-color:#2FA9ED;
+        transition: all 0.5 s;
+        cursor: pointer;
+        }
     .myMain .siteList > li:hover > .edit {
         display: block;
         position: absolute;

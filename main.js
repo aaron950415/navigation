@@ -8,8 +8,7 @@ const hashMap = saveObject || [
     {loge : "A", url : 'https://www.acfun.cn/'},
     {loge : "E", url : 'https://www.edmodo.com/'},
     {loge : "F", url : 'https://www.facebook.com/'},
-    {loge : "G", url : 'https://www.google.com/'},
-    
+    {loge : "G", url : 'https://www.google.com/'}
 ]
 let simplifyUrl = (url)=>{
      return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
