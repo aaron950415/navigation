@@ -1,7 +1,12 @@
 const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
 const save = Cookies.get('save');
-const saveObject = JSON.parse(save);
+console.log(save);
+let saveObject
+if(save !== undefined){
+    saveObject = JSON.parse(save);
+}
+console.log(saveObject);
 const hashMap = saveObject || [
     {loge : "A", url : 'https://www.acfun.cn/'},
     {loge : "B", url : 'https://www.bilibili.com/'},
