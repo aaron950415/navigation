@@ -21,7 +21,7 @@ const render=()=>{
     hashMap.forEach((node, index)=>{
         const $li = $(
             `
-                <li>
+                <li onselectstart="return false;" unselectable="on">
                     <div class="logo">${node.loge}</div>
                     <svg class="edit">
                         <use xlink:href="#icon-edit"></use>
