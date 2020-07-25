@@ -100,7 +100,7 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-    Cookies.set('save', string);
+    Cookies.set('save', string, { expires: 7, path: '' });
 
 }
 
