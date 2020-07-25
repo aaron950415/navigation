@@ -97,7 +97,8 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-  //  localStorage.setItem('save',string);
+    localStorage.setItem('save',string);
+
 }
 
 // $(document).on('keypress',(e)=>{
