@@ -3,19 +3,23 @@ const lastLi = siteList.find('li.last');
 const save = localStorage.getItem('save');
 const saveObject = JSON.parse(save);
 const hashMap = saveObject || [
-    {loge : "B", url : 'https://www.bilibili.com/'},
-    {loge : "B", url : 'https://www.baidu.com/'},
     {loge : "A", url : 'https://www.acfun.cn/'},
+    {loge : "B", url : 'https://www.bilibili.com/'},
     {loge : "E", url : 'https://www.edmodo.com/'},
+    {loge : "B", url : 'https://www.baidu.com/'},
     {loge : "F", url : 'https://www.facebook.com/'},
     {loge : "G", url : 'https://www.google.com/'}
 ]
+
+
 let simplifyUrl = (url)=>{
      return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
 }
 
 const render=()=>{
     siteList.find('li:not(.last)').remove();
+    console.log(sort(hashMap))
+
     hashMap.forEach((node, index)=>{
         const $li = $(
             `
@@ -28,7 +32,6 @@ const render=()=>{
                 </li>
             `
         ).insertBefore(lastLi);
-
         $li.on('click',()=>{
             window.open(node.url)
         })
@@ -94,7 +97,7 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-    localStorage.setItem('save',string);
+  //  localStorage.setItem('save',string);
 }
 
 // $(document).on('keypress',(e)=>{
