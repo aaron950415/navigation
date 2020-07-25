@@ -18,8 +18,6 @@ let simplifyUrl = (url)=>{
 
 const render=()=>{
     siteList.find('li:not(.last)').remove();
-    console.log(sort(hashMap))
-
     hashMap.forEach((node, index)=>{
         const $li = $(
             `
