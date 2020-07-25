@@ -55,7 +55,7 @@ const render=()=>{
         $li.on('touchend',(e)=>{
             b = e.timeStamp
             console.log(e)
-            if((b-a) > 1000){
+            if((b-a) > 300){
                     console.log('d')
                     let c = confirm("是否删除该网页？点否则进入网址编辑")
                     if(c){
