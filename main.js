@@ -1,10 +1,6 @@
 const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
-let save = localStorage.getItem('save');
-if(save === null){
-    save = Cookies.get('save');
-    console.log(save);
-}
+const save = Cookies.get('save');
 const saveObject = JSON.parse(save);
 const hashMap = saveObject || [
     {loge : "A", url : 'https://www.acfun.cn/'},
@@ -99,7 +95,6 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-    localStorage.setItem('save',string);
     Cookies.set('save', string);
 
 }
