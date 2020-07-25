@@ -64,6 +64,12 @@ body{
     justify-content:space-between;
     flex-wrap: wrap;
     margin: 30px;
+    -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 .myMain > .siteList >li {
     width: 150px;
@@ -93,12 +99,7 @@ cursor: pointer;
     font-size: 24px;
 }
 .myMain > .siteList >li p{
--webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+
 
     width: 130px;
     text-align: center;
