@@ -44,6 +44,12 @@ body{
     color: white;
     font-size: 18px;
     line-height: 21px;
+        -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 .myMain{
     margin: 30px auto;
