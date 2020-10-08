@@ -2,12 +2,8 @@ const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
 const save = window.localStorage.getItem("save");
 let saveObject
-
-let simplifyUrl = (url)=>{
-    if(save !== undefined){
-        saveObject = JSON.parse(save);
-        return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
-    }
+if(save !== undefined){
+    saveObject = JSON.parse(save);
 }
 let hashMap = saveObject || [
     {logo : "A", url : 'https://www.acfun.cn/'},
@@ -19,6 +15,9 @@ let hashMap = saveObject || [
 ]
 
 
+let simplifyUrl = (url)=>{
+     return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
+}
 
 const render=()=>{
         const string = JSON.stringify(hashMap);
@@ -40,7 +39,7 @@ const render=()=>{
             window.open(node.url)
         })
         $li.on('click','.edit',(e)=>{
-            let c = confirm("是否删除该网页？点否则进入网址编辑")
+            let c = confirm("是否删除该网页？点取消则进入网址编辑")
             if(c){
                 e.stopPropagation();
                 hashMap.splice(index, 1);
@@ -66,7 +65,7 @@ const render=()=>{
             d=e.changedTouches[0]
             if(c.clientX ===d.clientX &&c.clientY ===d.clientY){
             if((b-a) > 300){
-                    let c = confirm("是否删除该网页？点否则进入网址编辑")
+                    let c = confirm("是否删除该网页？点取消则进入网址编辑")
                     if(c){
                         e.stopPropagation();
                         hashMap.splice(index, 1);
@@ -90,6 +89,9 @@ render();
 $('.last').on('click',()=>{
     let logo = prompt('请问你要添加的网址名是？')
     let url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)')
+    if(url===null){
+        return
+    }
     hashMap.push({
         logo : logo,
         url : url

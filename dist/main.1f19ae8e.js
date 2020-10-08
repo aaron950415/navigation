@@ -123,12 +123,9 @@ var lastLi = siteList.find('li.last');
 var save = window.localStorage.getItem("save");
 var saveObject;
 
-var simplifyUrl = function simplifyUrl(url) {
-  if (save !== undefined) {
-    saveObject = JSON.parse(save);
-    return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
-  }
-};
+if (save !== undefined) {
+  saveObject = JSON.parse(save);
+}
 
 var hashMap = saveObject || [{
   logo: "A",
@@ -150,6 +147,10 @@ var hashMap = saveObject || [{
   url: 'https://www.google.com/'
 }];
 
+var simplifyUrl = function simplifyUrl(url) {
+  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
+};
+
 var render = function render() {
   var string = JSON.stringify(hashMap);
   window.localStorage.setItem("save", string);
@@ -160,7 +161,7 @@ var render = function render() {
       window.open(node.url);
     });
     $li.on('click', '.edit', function (e) {
-      var c = confirm("是否删除该网页？点否则进入网址编辑");
+      var c = confirm("是否删除该网页？点取消则进入网址编辑");
 
       if (c) {
         e.stopPropagation();
@@ -190,7 +191,7 @@ var render = function render() {
 
       if (c.clientX === d.clientX && c.clientY === d.clientY) {
         if (b - a > 300) {
-          var _c = confirm("是否删除该网页？点否则进入网址编辑");
+          var _c = confirm("是否删除该网页？点取消则进入网址编辑");
 
           if (_c) {
             e.stopPropagation();
@@ -218,6 +219,11 @@ render();
 $('.last').on('click', function () {
   var logo = prompt('请问你要添加的网址名是？');
   var url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)');
+
+  if (url === null) {
+    return;
+  }
+
   hashMap.push({
     logo: logo,
     url: url
@@ -269,7 +275,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60758" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64294" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
