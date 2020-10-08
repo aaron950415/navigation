@@ -41,7 +41,7 @@ const render = () => {
       window.open(node.url);
     });
     $li.on("click", ".edit", (e) => {
-      let c = confirm("是否删除该网页？点否则进入网址编辑");
+      let c = confirm("是否删除该网页？点取消则进入网址编辑");
       if (c) {
         e.stopPropagation();
         hashMap.splice(index, 1);

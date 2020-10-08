@@ -119,7 +119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 var siteList = $(".siteList");
-var lastLi = siteList.find('li.last');
+var lastLi = siteList.find("li.last");
 var save = window.localStorage.getItem("save");
 var saveObject;
 
@@ -128,48 +128,48 @@ if (save !== undefined) {
 }
 
 var hashMap = saveObject || [{
-  loge: "A",
-  url: 'https://www.acfun.cn/'
+  loge: "Acfun",
+  url: "https://www.acfun.cn/"
 }, {
-  loge: "B",
-  url: 'https://www.bilibili.com/'
+  loge: "bilibili",
+  url: "https://www.bilibili.com/"
 }, {
-  loge: "E",
-  url: 'https://www.edmodo.com/'
+  loge: "百度",
+  url: "https://www.baidu.com/"
 }, {
-  loge: "B",
-  url: 'https://www.baidu.com/'
+  loge: "Facebook",
+  url: "https://www.facebook.com/"
 }, {
-  loge: "F",
-  url: 'https://www.facebook.com/'
-}, {
-  loge: "G",
-  url: 'https://www.google.com/'
+  loge: "谷歌",
+  url: "https://www.google.com/"
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
+  return url.replace("https://", "").replace("http://", "").replace("www.", "").replace(/\/.*/, "");
 };
 
 var render = function render() {
-  siteList.find('li:not(.last)').remove();
+  var string = JSON.stringify(hashMap);
+  window.localStorage.setItem("save", string);
+  siteList.find("li:not(.last)").remove();
   hashMap.forEach(function (node, index) {
     var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.loge, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
-    $li.on('click', function () {
+    $li.on("click", function () {
       window.open(node.url);
     });
-    $li.on('click', '.edit', function (e) {
-      var c = confirm("是否删除该网页？点否则进入网址编辑");
+    $li.on("click", ".edit", function (e) {
+      var c = confirm("是否删除该网页？点取消则进入网址编辑");
 
       if (c) {
         e.stopPropagation();
         hashMap.splice(index, 1);
       } else {
-        var r = prompt('请问网址要修改成？', node.url);
+        var r = prompt("请问网址名要修改成？", node.logo);
+        var k = prompt("请问网址要修改成？", node.url);
 
         if (r !== null) {
-          node.url = r;
-          node.loge = simplifyUrl(node.url)[0].toUpperCase();
+          node.url = k;
+          node.loge = r;
         }
 
         e.stopPropagation();
@@ -178,11 +178,11 @@ var render = function render() {
       render();
     });
     var a, b, c, d;
-    $li.on('touchstart', function (e) {
+    $li.on("touchstart", function (e) {
       a = e.timeStamp;
       c = e.targetTouches[0];
     });
-    $li.on('touchend', function (e) {
+    $li.on("touchend", function (e) {
       b = e.timeStamp;
       d = e.changedTouches[0];
 
@@ -194,11 +194,12 @@ var render = function render() {
             e.stopPropagation();
             hashMap.splice(index, 1);
           } else {
-            var r = prompt('请问网址要修改成？', node.url);
+            var r = prompt("请问网址名要修改成？", node.loge);
+            var k = prompt("请问网址要修改成？", node.url);
 
             if (r !== null) {
-              node.url = r;
-              node.loge = simplifyUrl(node.url)[0].toUpperCase();
+              node.url = k;
+              node.loge = r;
             }
 
             e.stopPropagation();
@@ -212,21 +213,20 @@ var render = function render() {
 };
 
 render();
-$('.last').on('click', function () {
-  var url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)');
+$(".last").on("click", function () {
+  var logo = prompt("请问你要添加的网址名是?");
+  var url = prompt("请问你要添加的网址是？(请以HTTP或者HTTPS开头)");
   hashMap.push({
-    loge: simplifyUrl(url)[0].toUpperCase(),
+    loge: logo,
     url: url
   });
-  var string = JSON.stringify(hashMap);
-  window.localStorage.setItem("save", string);
   render();
 });
-$('input').on('focus', function () {
-  document.querySelectorAll('input')[0].className = 'change';
+$("input").on("focus", function () {
+  document.querySelectorAll("input")[0].className = "change";
 });
-$('input').on('blur', function () {
-  document.querySelectorAll('input')[0].className = 'type';
+$("input").on("blur", function () {
+  document.querySelectorAll("input")[0].className = "type";
 }); // window.onbeforeunload = ()=>{
 //     const string = JSON.stringify(hashMap);
 //     window.localStorage.setItem("save", string);
@@ -267,7 +267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50278" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
