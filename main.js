@@ -53,15 +53,16 @@ const render=()=>{
             }
             render();
         })
-        let a,b;
+        let a,b,c,d;
         $li.on('touchstart',(e)=>{
             a = e.timeStamp
+           c=e.targetTouches[0]
         })
         $li.on('touchend',(e)=>{
-            b = e.timeStamp
-            console.log(e)
+            b = e.timeStamp 
+            d=e.changedTouches[0]
+            if(c.clientX ===d.clientX &&c.clientY ===d.clientY){
             if((b-a) > 300){
-                    console.log('d')
                     let c = confirm("是否删除该网页？点否则进入网址编辑")
                     if(c){
                         e.stopPropagation();
@@ -76,6 +77,7 @@ const render=()=>{
                     }
                     render();
             }
+        }
         })
     })
 }

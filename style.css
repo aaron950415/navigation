@@ -1,172 +1,172 @@
-*{
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-        
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 .icon {
-    width: 1em; height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
-ul, ol{
-    list-style: none;
+ul,
+ol {
+  list-style: none;
 }
 
-body{
-    background-color:#DDD;
+body {
+  background: url("./source/background.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
-.myHeader form{
-    margin: 30px;
-    padding: 20px 0px;
-    display: flex;
-    justify-content: center;
+.myHeader form {
+  margin: 30px;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: center;
 }
-.myHeader  .type {
-    width: 100%;
-    height: 43px;
-    background: #FFFFFF;
-    border: none;
-    border-radius: 10px;
-    padding: 0 10px;
-    font-size: 20px;
-    
+.myHeader .type {
+  width: 100%;
+  height: 43px;
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 10px;
+  font-size: 20px;
 }
-.myHeader  button {
-    padding: 0px 20px;
-    border: none;
-    margin-left: 5px;
-    background: #2FA9ED;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    line-height: 21px;
-        -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+.myHeader button {
+  padding: 0px 20px;
+  border: none;
+  margin-left: 5px;
+  background: #2fa9ed;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  line-height: 21px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-.myMain{
-    margin: 30px auto;
+.myMain {
+  margin: 30px auto;
+  position: relative;
+}
+.myMain li .edit {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: default;
+}
+
+.myMain > .siteList {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 30px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.myMain > .siteList > li {
+  width: 150px;
+  background: #ffffff;
+  border-radius: 40px;
+  margin-bottom: 25px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+.last {
+  padding: 30px 0;
+}
+.myMain > .siteList > li:hover {
+  position: relative;
+  bottom: 3px;
+  right: 3px;
+  transition: all 0.5 s;
+  cursor: pointer;
+}
+.myMain > .siteList > li .logo {
+  font-size: 46px;
+}
+.myMain > .siteList > li > .site {
+  font-size: 24px;
+}
+.myMain > .siteList > li p {
+  width: 130px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.add {
+  padding-top: 3px;
+  width: 42px;
+  height: 42px;
+}
+.site2 {
+  font-size: 19px;
+  margin-top: 15px;
+}
+
+@media (min-width: 500px) {
+  .myHeader {
+    max-width: 400px;
+    margin: 100px auto 60px;
+  }
+  .myMain {
+    max-width: 850px;
+  }
+  .myMain .siteList {
+    margin-left: 0;
+    margin-right: -25px;
+    justify-content: flex-start;
+  }
+  .myMain .siteList li {
+    margin-right: 25px;
+  }
+  .myMain > .siteList > li:hover {
     position: relative;
-}
-.myMain li .edit{
-    display: none;
+    bottom: 3px;
+    right: 3px;
+    background-color: #2fa9ed;
+    transition: all 0.5 s;
+    cursor: pointer;
+  }
+  .myMain .siteList > li:hover > .edit {
+    display: block;
     position: absolute;
+    width: 20px;
+    height: 20px;
     right: 0px;
     top: 0px;
-    cursor: default;
+  }
+  body {
+    background: url("./source/background.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+  }
 }
-
-.myMain > .siteList{
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content:space-between;
-    flex-wrap: wrap;
-    margin: 30px;
-    -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-}
-.myMain > .siteList >li {
-    width: 150px;
-    background: #FFFFFF;
-    border-radius: 40px;
-    margin-bottom: 25px;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-}
-.last{
-    padding: 30px 0;
-}
-.myMain > .siteList >li:hover{
-position: relative;
-bottom: 3px;
-right:  3px;
-transition: all 0.5 s;
-cursor: pointer;
-}
-.myMain > .siteList >li  .logo{
-    font-size: 46px;
-}
-.myMain > .siteList >li > .site{
-    font-size: 24px;
-}
-.myMain > .siteList >li p{
-
-
-    width: 130px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.add{
-    padding-top: 3px;
-    width: 42px;    
-    height: 42px;
-}
-.site2{
-    font-size: 19px;
-    margin-top: 15px;
-}
-
-@media (min-width: 500px){
-    .myHeader{
-        max-width: 400px;
-        margin: 100px auto 60px;
-    }  
-    .myMain{
-        max-width: 850px;
-    }
-    .myMain .siteList{
-        margin-left: 0;
-        margin-right: -25px;
-        justify-content:flex-start ;
-    }
-    .myMain .siteList li{
-        margin-right: 25px;
-    }
-    .myMain > .siteList >li:hover{
-        position: relative;
-        bottom: 3px;
-        right:  3px;
-        background-color:#2FA9ED;
-        transition: all 0.5 s;
-        cursor: pointer;
-        }
-    .myMain .siteList > li:hover > .edit {
-        display: block;
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        right: 0px;
-        top: 0px;
-    }
-    body{
-        background:url('./source/background.jpg') ;
-        background-size: auto;
-        background-repeat: no-repeat;
-    }
-}
-.change{
-    width: 1000px;
-    border-radius: 43px;
-    height: 43px;
-    background: #FFFFFF;
-    border: none;
-    padding: 0 10px;
-    font-size: 20px;
+.change {
+  width: 1000px;
+  border-radius: 43px;
+  height: 43px;
+  background: #ffffff;
+  border: none;
+  padding: 0 10px;
+  font-size: 20px;
 }

@@ -179,33 +179,35 @@ var render = function render() {
 
       render();
     });
-    var a, b;
+    var a, b, c, d;
     $li.on('touchstart', function (e) {
       a = e.timeStamp;
+      c = e.targetTouches[0];
     });
     $li.on('touchend', function (e) {
       b = e.timeStamp;
-      console.log(e);
+      d = e.changedTouches[0];
 
-      if (b - a > 300) {
-        console.log('d');
-        var c = confirm("是否删除该网页？点否则进入网址编辑");
+      if (c.clientX === d.clientX && c.clientY === d.clientY) {
+        if (b - a > 300) {
+          var _c = confirm("是否删除该网页？点否则进入网址编辑");
 
-        if (c) {
-          e.stopPropagation();
-          hashMap.splice(index, 1);
-        } else {
-          var r = prompt('请问网址要修改成？', node.url);
+          if (_c) {
+            e.stopPropagation();
+            hashMap.splice(index, 1);
+          } else {
+            var r = prompt('请问网址要修改成？', node.url);
 
-          if (r !== null) {
-            node.url = r;
-            node.loge = simplifyUrl(node.url)[0].toUpperCase();
+            if (r !== null) {
+              node.url = r;
+              node.loge = simplifyUrl(node.url)[0].toUpperCase();
+            }
+
+            e.stopPropagation();
           }
 
-          e.stopPropagation();
+          render();
         }
-
-        render();
       }
     });
   });
@@ -271,7 +273,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63451" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63645" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
