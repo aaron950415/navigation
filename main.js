@@ -1,12 +1,10 @@
 const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
 const save = Cookies.get('save');
-console.log(save);
 let saveObject
 if(save !== undefined){
     saveObject = JSON.parse(save);
 }
-console.log(saveObject);
 const hashMap = saveObject || [
     {loge : "A", url : 'https://www.acfun.cn/'},
     {loge : "B", url : 'https://www.bilibili.com/'},
@@ -91,11 +89,11 @@ $('.last').on('click',()=>{
     render();
 })
 $('input').on('focus',()=>{
-    console.log(document.querySelectorAll('input')[0])
+
         document.querySelectorAll('input')[0].className='change';
 })
 $('input').on('blur',()=>{
-    console.log(document.querySelectorAll('input')[0])
+
         document.querySelectorAll('input')[0].className='type';
 })
 
