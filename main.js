@@ -1,6 +1,6 @@
 const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
-const save = Cookies.get('save');
+const save = window.localStorage.getItem("save");
 let saveObject
 if(save !== undefined){
     saveObject = JSON.parse(save);
@@ -100,7 +100,7 @@ $('input').on('blur',()=>{
 
 window.onbeforeunload = ()=>{
     const string = JSON.stringify(hashMap);
-    Cookies.set('save', string, { expires: 7, path: '' });
+    window.localStorage.setItem("save", string);
 
 }
 
