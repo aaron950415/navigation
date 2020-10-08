@@ -120,20 +120,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 var siteList = $(".siteList");
 var lastLi = siteList.find('li.last');
-var save = localStorage.getItem('save');
-var saveObject = JSON.parse(save);
+var save = Cookies.get('save');
+console.log(save);
+var saveObject;
+
+if (save !== undefined) {
+  saveObject = JSON.parse(save);
+}
+
+console.log(saveObject);
 var hashMap = saveObject || [{
-  loge: "B",
-  url: 'https://www.bilibili.com/'
-}, {
-  loge: "B",
-  url: 'https://www.baidu.com/'
-}, {
   loge: "A",
   url: 'https://www.acfun.cn/'
 }, {
+  loge: "B",
+  url: 'https://www.bilibili.com/'
+}, {
   loge: "E",
   url: 'https://www.edmodo.com/'
+}, {
+  loge: "B",
+  url: 'https://www.baidu.com/'
 }, {
   loge: "F",
   url: 'https://www.facebook.com/'
@@ -149,7 +156,7 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n                <li>\n                    <div class=\"logo\">".concat(node.loge, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
+    var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.loge, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -180,7 +187,7 @@ var render = function render() {
       b = e.timeStamp;
       console.log(e);
 
-      if (b - a > 1000) {
+      if (b - a > 300) {
         console.log('d');
         var c = confirm("是否删除该网页？点否则进入网址编辑");
 
@@ -224,7 +231,10 @@ $('input').on('blur', function () {
 
 window.onbeforeunload = function () {
   var string = JSON.stringify(hashMap);
-  localStorage.setItem('save', string);
+  Cookies.set('save', string, {
+    expires: 7,
+    path: ''
+  });
 }; // $(document).on('keypress',(e)=>{
 //     const key=e.key;
 //     for(let i=0;i<hashMap.length;i++){
@@ -261,7 +271,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63451" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

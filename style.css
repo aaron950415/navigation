@@ -156,12 +156,11 @@ cursor: pointer;
         top: 0px;
     }
     body{
-        background:url(http://zmxia.com/images/2018-09/20180913102107214_11.jpg) ;
+        background:url('./source/background.jpg') ;
         background-size: auto;
         background-repeat: no-repeat;
     }
 }
-
 .change{
     width: 1000px;
     border-radius: 43px;

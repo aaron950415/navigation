@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+        
 }
 
 .icon {
@@ -44,6 +45,12 @@ body{
     color: white;
     font-size: 18px;
     line-height: 21px;
+        -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 .myMain{
     margin: 30px auto;
@@ -64,6 +71,12 @@ body{
     justify-content:space-between;
     flex-wrap: wrap;
     margin: 30px;
+    -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 .myMain > .siteList >li {
     width: 150px;
@@ -83,7 +96,6 @@ body{
 position: relative;
 bottom: 3px;
 right:  3px;
-background-color:#2FA9ED;
 transition: all 0.5 s;
 cursor: pointer;
 }
@@ -94,6 +106,8 @@ cursor: pointer;
     font-size: 24px;
 }
 .myMain > .siteList >li p{
+
+
     width: 130px;
     text-align: center;
     overflow: hidden;
@@ -125,6 +139,14 @@ cursor: pointer;
     .myMain .siteList li{
         margin-right: 25px;
     }
+    .myMain > .siteList >li:hover{
+        position: relative;
+        bottom: 3px;
+        right:  3px;
+        background-color:#2FA9ED;
+        transition: all 0.5 s;
+        cursor: pointer;
+        }
     .myMain .siteList > li:hover > .edit {
         display: block;
         position: absolute;
@@ -134,12 +156,11 @@ cursor: pointer;
         top: 0px;
     }
     body{
-        background:url(http://zmxia.com/images/2018-09/20180913102107214_11.jpg) ;
+        background:url('/background.a9250036.jpg');
         background-size: auto;
         background-repeat: no-repeat;
     }
 }
-
 .change{
     width: 1000px;
     border-radius: 43px;
