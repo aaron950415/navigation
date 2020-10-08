@@ -123,9 +123,12 @@ var lastLi = siteList.find('li.last');
 var save = window.localStorage.getItem("save");
 var saveObject;
 
-if (save !== undefined) {
-  saveObject = JSON.parse(save);
-}
+var simplifyUrl = function simplifyUrl(url) {
+  if (save !== undefined) {
+    saveObject = JSON.parse(save);
+    return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
+  }
+};
 
 var hashMap = saveObject || [{
   logo: "A",
@@ -146,10 +149,6 @@ var hashMap = saveObject || [{
   logo: "G",
   url: 'https://www.google.com/'
 }];
-
-var simplifyUrl = function simplifyUrl(url) {
-  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
-};
 
 var render = function render() {
   var string = JSON.stringify(hashMap);
@@ -270,7 +269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61940" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60758" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

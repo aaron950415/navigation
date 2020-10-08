@@ -2,8 +2,12 @@ const siteList = $(".siteList");
 const lastLi = siteList.find('li.last');
 const save = window.localStorage.getItem("save");
 let saveObject
-if(save !== undefined){
-    saveObject = JSON.parse(save);
+
+let simplifyUrl = (url)=>{
+    if(save !== undefined){
+        saveObject = JSON.parse(save);
+        return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
+    }
 }
 let hashMap = saveObject || [
     {logo : "A", url : 'https://www.acfun.cn/'},
@@ -15,9 +19,6 @@ let hashMap = saveObject || [
 ]
 
 
-let simplifyUrl = (url)=>{
-     return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
-}
 
 const render=()=>{
         const string = JSON.stringify(hashMap);
