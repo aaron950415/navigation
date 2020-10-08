@@ -218,7 +218,8 @@ $('.last').on('click', function () {
     loge: simplifyUrl(url)[0].toUpperCase(),
     url: url
   });
-  alert(hashMap);
+  var string = JSON.stringify(hashMap);
+  window.localStorage.setItem("save", string);
   render();
 });
 $('input').on('focus', function () {
@@ -226,12 +227,11 @@ $('input').on('focus', function () {
 });
 $('input').on('blur', function () {
   document.querySelectorAll('input')[0].className = 'type';
-});
-
-window.onbeforeunload = function () {
-  var string = JSON.stringify(hashMap);
-  window.localStorage.setItem("save", string);
-}; // $(document).on('keypress',(e)=>{
+}); // window.onbeforeunload = ()=>{
+//     const string = JSON.stringify(hashMap);
+//     window.localStorage.setItem("save", string);
+// }
+// $(document).on('keypress',(e)=>{
 //     const key=e.key;
 //     for(let i=0;i<hashMap.length;i++){
 //         if(hashMap[i].loge.toLowerCase() === key){
@@ -267,7 +267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50278" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

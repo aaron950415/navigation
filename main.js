@@ -1,29 +1,33 @@
 const siteList = $(".siteList");
-const lastLi = siteList.find('li.last');
+const lastLi = siteList.find("li.last");
 const save = window.localStorage.getItem("save");
-let saveObject
-if(save !== undefined){
-    saveObject = JSON.parse(save);
+let saveObject;
+if (save !== undefined) {
+  saveObject = JSON.parse(save);
 }
 let hashMap = saveObject || [
-    {loge : "A", url : 'https://www.acfun.cn/'},
-    {loge : "B", url : 'https://www.bilibili.com/'},
-    {loge : "E", url : 'https://www.edmodo.com/'},
-    {loge : "B", url : 'https://www.baidu.com/'},
-    {loge : "F", url : 'https://www.facebook.com/'},
-    {loge : "G", url : 'https://www.google.com/'}
-]
+  { loge: "Acfun", url: "https://www.acfun.cn/" },
+  { loge: "bilibili", url: "https://www.bilibili.com/" },
+  { loge: "百度", url: "https://www.baidu.com/" },
+  { loge: "Facebook", url: "https://www.facebook.com/" },
+  { loge: "谷歌", url: "https://www.google.com/" },
+];
 
+let simplifyUrl = (url) => {
+  return url
+    .replace("https://", "")
+    .replace("http://", "")
+    .replace("www.", "")
+    .replace(/\/.*/, "");
+};
 
-let simplifyUrl = (url)=>{
-     return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
-}
-
-const render=()=>{
-    siteList.find('li:not(.last)').remove();
-    hashMap.forEach((node, index)=>{
-        const $li = $(
-            `
+const render = () => {
+  const string = JSON.stringify(hashMap);
+  window.localStorage.setItem("save", string);
+  siteList.find("li:not(.last)").remove();
+  hashMap.forEach((node, index) => {
+    const $li = $(
+      `
                 <li onselectstart="return false;" unselectable="on">
                     <div class="logo">${node.loge}</div>
                     <svg class="edit">
@@ -32,73 +36,71 @@ const render=()=>{
                     <p class="site">${simplifyUrl(node.url)}</p>
                 </li>
             `
-        ).insertBefore(lastLi);
-        $li.on('click',()=>{
-            window.open(node.url)
-        })
-        $li.on('click','.edit',(e)=>{
-            let c = confirm("是否删除该网页？点否则进入网址编辑")
-            if(c){
-                e.stopPropagation();
-                hashMap.splice(index, 1);
-            }else{
-                let r = prompt('请问网址要修改成？', node.url);
-                if( r !== null){
-                    node.url = r;
-                    node.loge = simplifyUrl(node.url)[0].toUpperCase();
-                }
-                e.stopPropagation();
-            }
-            render();
-        })
-        let a,b,c,d;
-        $li.on('touchstart',(e)=>{
-            a = e.timeStamp
-           c=e.targetTouches[0]
-        })
-        $li.on('touchend',(e)=>{
-            b = e.timeStamp 
-            d=e.changedTouches[0]
-            if(c.clientX ===d.clientX &&c.clientY ===d.clientY){
-            if((b-a) > 300){
-                    let c = confirm("是否删除该网页？点否则进入网址编辑")
-                    if(c){
-                        e.stopPropagation();
-                        hashMap.splice(index, 1);
-                    }else{
-                        let r = prompt('请问网址要修改成？', node.url);
-                        if( r !== null){
-                            node.url = r;
-                            node.loge = simplifyUrl(node.url)[0].toUpperCase();
-                        }
-                        e.stopPropagation();
-                    }
-                    render();
-            }
+    ).insertBefore(lastLi);
+    $li.on("click", () => {
+      window.open(node.url);
+    });
+    $li.on("click", ".edit", (e) => {
+      let c = confirm("是否删除该网页？点否则进入网址编辑");
+      if (c) {
+        e.stopPropagation();
+        hashMap.splice(index, 1);
+      } else {
+        let r = prompt("请问网址名要修改成？", node.logo);
+        let k = prompt("请问网址要修改成？", node.url);
+        if (r !== null) {
+          node.url = k;
+          node.loge = r;
         }
-        })
-    })
-}
+        e.stopPropagation();
+      }
+      render();
+    });
+    let a, b, c, d;
+    $li.on("touchstart", (e) => {
+      a = e.timeStamp;
+      c = e.targetTouches[0];
+    });
+    $li.on("touchend", (e) => {
+      b = e.timeStamp;
+      d = e.changedTouches[0];
+      if (c.clientX === d.clientX && c.clientY === d.clientY) {
+        if (b - a > 300) {
+          let c = confirm("是否删除该网页？点否则进入网址编辑");
+          if (c) {
+            e.stopPropagation();
+            hashMap.splice(index, 1);
+          } else {
+            let r = prompt("请问网址名要修改成？", node.loge);
+            let k = prompt("请问网址要修改成？", node.url);
+            if (r !== null) {
+              node.url = k;
+              node.loge = r;
+            }
+            e.stopPropagation();
+          }
+          render();
+        }
+      }
+    });
+  });
+};
 render();
-$('.last').on('click',()=>{
-    let url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)')
-    hashMap.push({
-        loge : simplifyUrl(url)[0].toUpperCase(),
-        url : url
-    })
-    const string = JSON.stringify(hashMap);
-    window.localStorage.setItem("save", string);
-    render();
-})
-$('input').on('focus',()=>{
-
-        document.querySelectorAll('input')[0].className='change';
-})
-$('input').on('blur',()=>{
-
-        document.querySelectorAll('input')[0].className='type';
-})
-
+$(".last").on("click", () => {
+  let logo = prompt("请问你要添加的网址名是?");
+  let url = prompt("请问你要添加的网址是？(请以HTTP或者HTTPS开头)");
+  hashMap.push({
+    loge: logo,
+    url: url,
+  });
+  render();
+});
+$("input").on("focus", () => {
+  document.querySelectorAll("input")[0].className = "change";
+});
+$("input").on("blur", () => {
+  document.querySelectorAll("input")[0].className = "type";
+});
 
 // window.onbeforeunload = ()=>{
 //     const string = JSON.stringify(hashMap);
@@ -114,4 +116,3 @@ $('input').on('blur',()=>{
 //         }
 //     }
 // })
-
