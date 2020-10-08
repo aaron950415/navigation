@@ -119,7 +119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 var siteList = $(".siteList");
-var lastLi = siteList.find("li.last");
+var lastLi = siteList.find('li.last');
 var save = window.localStorage.getItem("save");
 var saveObject;
 
@@ -128,48 +128,51 @@ if (save !== undefined) {
 }
 
 var hashMap = saveObject || [{
-  loge: "Acfun",
-  url: "https://www.acfun.cn/"
+  logo: "A",
+  url: 'https://www.acfun.cn/'
 }, {
-  loge: "bilibili",
-  url: "https://www.bilibili.com/"
+  logo: "B",
+  url: 'https://www.bilibili.com/'
 }, {
-  loge: "百度",
-  url: "https://www.baidu.com/"
+  logo: "E",
+  url: 'https://www.edmodo.com/'
 }, {
-  loge: "Facebook",
-  url: "https://www.facebook.com/"
+  logo: "B",
+  url: 'https://www.baidu.com/'
 }, {
-  loge: "谷歌",
-  url: "https://www.google.com/"
+  logo: "F",
+  url: 'https://www.facebook.com/'
+}, {
+  logo: "G",
+  url: 'https://www.google.com/'
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
-  return url.replace("https://", "").replace("http://", "").replace("www.", "").replace(/\/.*/, "");
+  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
 };
 
 var render = function render() {
   var string = JSON.stringify(hashMap);
   window.localStorage.setItem("save", string);
-  siteList.find("li:not(.last)").remove();
+  siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.loge, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
-    $li.on("click", function () {
+    var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.logo, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
+    $li.on('click', function () {
       window.open(node.url);
     });
-    $li.on("click", ".edit", function (e) {
-      var c = confirm("是否删除该网页？点取消则进入网址编辑");
+    $li.on('click', '.edit', function (e) {
+      var c = confirm("是否删除该网页？点否则进入网址编辑");
 
       if (c) {
         e.stopPropagation();
         hashMap.splice(index, 1);
       } else {
-        var r = prompt("请问网址名要修改成？", node.logo);
-        var k = prompt("请问网址要修改成？", node.url);
+        var r = prompt('请问网址名要修改成？', node.logo);
+        var k = prompt('请问网址要修改成？', node.url);
 
         if (r !== null) {
+          node.logo = r;
           node.url = k;
-          node.loge = r;
         }
 
         e.stopPropagation();
@@ -178,11 +181,11 @@ var render = function render() {
       render();
     });
     var a, b, c, d;
-    $li.on("touchstart", function (e) {
+    $li.on('touchstart', function (e) {
       a = e.timeStamp;
       c = e.targetTouches[0];
     });
-    $li.on("touchend", function (e) {
+    $li.on('touchend', function (e) {
       b = e.timeStamp;
       d = e.changedTouches[0];
 
@@ -194,12 +197,12 @@ var render = function render() {
             e.stopPropagation();
             hashMap.splice(index, 1);
           } else {
-            var r = prompt("请问网址名要修改成？", node.loge);
-            var k = prompt("请问网址要修改成？", node.url);
+            var r = prompt('请问网址名要修改成？', node.logo);
+            var k = prompt('请问网址名要修改成？', node.url);
 
             if (r !== null) {
               node.url = k;
-              node.loge = r;
+              node.logo = r;
             }
 
             e.stopPropagation();
@@ -213,20 +216,20 @@ var render = function render() {
 };
 
 render();
-$(".last").on("click", function () {
-  var logo = prompt("请问你要添加的网址名是?");
-  var url = prompt("请问你要添加的网址是？(请以HTTP或者HTTPS开头)");
+$('.last').on('click', function () {
+  var logo = prompt('请问你要添加的网址名是？');
+  var url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)');
   hashMap.push({
-    loge: logo,
+    logo: logo,
     url: url
   });
   render();
 });
-$("input").on("focus", function () {
-  document.querySelectorAll("input")[0].className = "change";
+$('input').on('focus', function () {
+  document.querySelectorAll('input')[0].className = 'change';
 });
-$("input").on("blur", function () {
-  document.querySelectorAll("input")[0].className = "type";
+$('input').on('blur', function () {
+  document.querySelectorAll('input')[0].className = 'type';
 }); // window.onbeforeunload = ()=>{
 //     const string = JSON.stringify(hashMap);
 //     window.localStorage.setItem("save", string);
@@ -234,7 +237,7 @@ $("input").on("blur", function () {
 // $(document).on('keypress',(e)=>{
 //     const key=e.key;
 //     for(let i=0;i<hashMap.length;i++){
-//         if(hashMap[i].loge.toLowerCase() === key){
+//         if(hashMap[i].logo.toLowerCase() === key){
 //             window.open(hashMap[i].url)
 //         }
 //     }
@@ -267,7 +270,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61940" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
