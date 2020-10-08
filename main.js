@@ -86,7 +86,8 @@ $('.last').on('click',()=>{
         loge : simplifyUrl(url)[0].toUpperCase(),
         url : url
     })
-    alert(hashMap)
+    const string = JSON.stringify(hashMap);
+    window.localStorage.setItem("save", string);
     render();
 })
 $('input').on('focus',()=>{
@@ -99,11 +100,11 @@ $('input').on('blur',()=>{
 })
 
 
-window.onbeforeunload = ()=>{
-    const string = JSON.stringify(hashMap);
-    window.localStorage.setItem("save", string);
+// window.onbeforeunload = ()=>{
+//     const string = JSON.stringify(hashMap);
+//     window.localStorage.setItem("save", string);
 
-}
+// }
 
 // $(document).on('keypress',(e)=>{
 //     const key=e.key;
