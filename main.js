@@ -5,7 +5,7 @@ let saveObject
 if(save !== undefined){
     saveObject = JSON.parse(save);
 }
-const hashMap = saveObject || [
+let hashMap = saveObject || [
     {loge : "A", url : 'https://www.acfun.cn/'},
     {loge : "B", url : 'https://www.bilibili.com/'},
     {loge : "E", url : 'https://www.edmodo.com/'},
@@ -86,6 +86,7 @@ $('.last').on('click',()=>{
         loge : simplifyUrl(url)[0].toUpperCase(),
         url : url
     })
+    alert(hashMap)
     render();
 })
 $('input').on('focus',()=>{

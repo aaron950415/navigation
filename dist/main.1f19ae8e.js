@@ -120,15 +120,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 var siteList = $(".siteList");
 var lastLi = siteList.find('li.last');
-var save = Cookies.get('save');
-console.log(save);
+var save = window.localStorage.getItem("save");
 var saveObject;
 
 if (save !== undefined) {
   saveObject = JSON.parse(save);
 }
 
-console.log(saveObject);
 var hashMap = saveObject || [{
   loge: "A",
   url: 'https://www.acfun.cn/'
@@ -220,23 +218,19 @@ $('.last').on('click', function () {
     loge: simplifyUrl(url)[0].toUpperCase(),
     url: url
   });
+  alert(hashMap);
   render();
 });
 $('input').on('focus', function () {
-  console.log(document.querySelectorAll('input')[0]);
   document.querySelectorAll('input')[0].className = 'change';
 });
 $('input').on('blur', function () {
-  console.log(document.querySelectorAll('input')[0]);
   document.querySelectorAll('input')[0].className = 'type';
 });
 
 window.onbeforeunload = function () {
   var string = JSON.stringify(hashMap);
-  Cookies.set('save', string, {
-    expires: 7,
-    path: ''
-  });
+  window.localStorage.setItem("save", string);
 }; // $(document).on('keypress',(e)=>{
 //     const key=e.key;
 //     for(let i=0;i<hashMap.length;i++){
@@ -273,7 +267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
