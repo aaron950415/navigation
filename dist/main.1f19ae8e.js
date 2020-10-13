@@ -129,22 +129,28 @@ if (save !== undefined) {
 
 var hashMap = saveObject || [{
   logo: "A",
-  url: 'https://www.acfun.cn/'
+  url: 'https://www.acfun.cn/',
+  name: null
 }, {
   logo: "B",
-  url: 'https://www.bilibili.com/'
+  url: 'https://www.bilibili.com/',
+  name: null
 }, {
   logo: "E",
-  url: 'https://www.edmodo.com/'
+  url: 'https://www.edmodo.com/',
+  name: null
 }, {
   logo: "B",
-  url: 'https://www.baidu.com/'
+  url: 'https://www.baidu.com/',
+  name: null
 }, {
   logo: "F",
-  url: 'https://www.facebook.com/'
+  url: 'https://www.facebook.com/',
+  name: null
 }, {
   logo: "G",
-  url: 'https://www.google.com/'
+  url: 'https://www.google.com/',
+  name: null
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
@@ -156,7 +162,7 @@ var render = function render() {
   window.localStorage.setItem("save", string);
   siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.logo, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(simplifyUrl(node.url), "</p>\n                </li>\n            ")).insertBefore(lastLi);
+    var $li = $("\n                <li onselectstart=\"return false;\" unselectable=\"on\">\n                    <div class=\"logo\">".concat(node.logo, "</div>\n                    <svg class=\"edit\">\n                        <use xlink:href=\"#icon-edit\"></use>\n                    </svg>\n                    <p class=\"site\">").concat(node.name, "</p>\n                </li>\n            ")).insertBefore(lastLi);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -167,12 +173,12 @@ var render = function render() {
         e.stopPropagation();
         hashMap.splice(index, 1);
       } else {
-        var r = prompt('请问网址名要修改成？', node.logo);
+        var r = prompt('请问网址名要修改成？', node.name);
         var k = prompt('请问网址要修改成？', node.url);
 
         if (r !== null) {
-          node.logo = r;
-          node.url = k;
+          node.name = r;
+          node.logo = simplifyUrl(k)[0].toUpperCase(), node.url = k;
         }
 
         e.stopPropagation();
@@ -197,12 +203,12 @@ var render = function render() {
             e.stopPropagation();
             hashMap.splice(index, 1);
           } else {
-            var r = prompt('请问网址名要修改成？', node.logo);
+            var r = prompt('请问网址名要修改成？', node.name);
             var k = prompt('请问网址名要修改成？', node.url);
 
             if (r !== null) {
               node.url = k;
-              node.logo = r;
+              node.logo = simplifyUrl(k)[0].toUpperCase(), node.name = r;
             }
 
             e.stopPropagation();
@@ -217,7 +223,7 @@ var render = function render() {
 
 render();
 $('.last').on('click', function () {
-  var logo = prompt('请问你要添加的网址名是？');
+  var name = prompt('请问你要添加的网址名是？');
   var url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)');
 
   if (url === null) {
@@ -225,7 +231,8 @@ $('.last').on('click', function () {
   }
 
   hashMap.push({
-    logo: logo,
+    logo: simplifyUrl(url)[0].toUpperCase(),
+    name: name,
     url: url
   });
   render();
@@ -275,7 +282,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64294" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53322" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

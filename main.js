@@ -6,12 +6,12 @@ if(save !== undefined){
     saveObject = JSON.parse(save);
 }
 let hashMap = saveObject || [
-    {logo : "A", url : 'https://www.acfun.cn/'},
-    {logo : "B", url : 'https://www.bilibili.com/'},
-    {logo : "E", url : 'https://www.edmodo.com/'},
-    {logo : "B", url : 'https://www.baidu.com/'},
-    {logo : "F", url : 'https://www.facebook.com/'},
-    {logo : "G", url : 'https://www.google.com/'}
+    {logo : "A", url : 'https://www.acfun.cn/',name:null},
+    {logo : "B", url : 'https://www.bilibili.com/',name:null},
+    {logo : "E", url : 'https://www.edmodo.com/',name:null},
+    {logo : "B", url : 'https://www.baidu.com/',name:null},
+    {logo : "F", url : 'https://www.facebook.com/',name:null},
+    {logo : "G", url : 'https://www.google.com/',name:null}
 ]
 
 
@@ -31,7 +31,7 @@ const render=()=>{
                     <svg class="edit">
                         <use xlink:href="#icon-edit"></use>
                     </svg>
-                    <p class="site">${simplifyUrl(node.url)}</p>
+                    <p class="site">${node.name}</p>
                 </li>
             `
         ).insertBefore(lastLi);
@@ -44,10 +44,11 @@ const render=()=>{
                 e.stopPropagation();
                 hashMap.splice(index, 1);
             }else{
-                let r = prompt('请问网址名要修改成？', node.logo);
+                let r = prompt('请问网址名要修改成？', node.name);
                 let k = prompt('请问网址要修改成？', node.url);
                 if( r !== null){
-                    node.logo = r;
+                    node.name = r;
+                    node.logo =simplifyUrl(k)[0].toUpperCase(),
                     node.url = k;
                     
                 }
@@ -70,12 +71,13 @@ const render=()=>{
                         e.stopPropagation();
                         hashMap.splice(index, 1);
                     }else{
-                        let r = prompt('请问网址名要修改成？', node.logo);
+                        let r = prompt('请问网址名要修改成？', node.name);
                         let k = prompt('请问网址名要修改成？', node.url);
                         if( r !== null){
                             
                             node.url = k;
-                            node.logo = r;
+                            node.logo =simplifyUrl(k)[0].toUpperCase(),
+                            node.name = r;
                         }
                         e.stopPropagation();
                     }
@@ -87,13 +89,14 @@ const render=()=>{
 }
 render();
 $('.last').on('click',()=>{
-    let logo = prompt('请问你要添加的网址名是？')
+    let name = prompt('请问你要添加的网址名是？')
     let url = prompt('请问你要添加的网址是？(请以HTTP或者HTTPS开头)')
     if(url===null){
         return
     }
     hashMap.push({
-        logo : logo,
+        logo: simplifyUrl(url)[0].toUpperCase(),
+        name : name,
         url : url
     })
     render();
